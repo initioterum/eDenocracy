@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>eDenocracy</title>
+    <style>
+      .link {
+      fill: none;
+      stroke: #ccc;
+      stroke-width: 2px;
+      }
+
+      .tooltipsy
+      {
+        padding: 10px;
+        color: #fff;
+        background-color: #222;
+        -moz-box-shadow: inset 0 0 10px #000;
+        -webkit-box-shadow: inset 0 0 10px #000;
+        box-shadow: inset 0 0 10px #000;
+        text-shadow: 0 0 3px #000;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        position: relative;
+      }
+    </style>
+
+    <!-- Semantic UI -->
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <script src="jquery-3.2.0.min.js"></script>
+    <script src="semantic/dist/semantic.min.js"></script>
+    <script type="text/javascript" src="tooltipsy-master/tooltipsy.min.js"></script>
+  </head>
+
+  <body>
+
+  <div id="svgContainer">
+
+
+  </div>
+
+  <div class="ui raised card hidden" id="ideaCard" style="display: none">
+    <div class="content">
+      <a class="header">Add Idea</a>
+      <div class="meta">
+        <span class="date" id="ideaParentTitle">Something to Consider on this Issue</span>
+      </div>
+      <div class="extra content">
+        <div class="ui form">
+          <div class="field">
+            <textarea id="userIdeaField"></textarea>
+          </div>
+          <div class="ui buttons">
+            <button class="ui button active" onclick="closeIdeaCard()">Cancel</button>
+            <button class="ui primary button" id="saveIdea" onclick="saveIdeaForm()">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui raised card hidden" id="questionCard" style="display: none; z-index: 0">
+    <div class="content">
+      <a class="header">Add Question</a>
+      <div class="meta">
+        <span class="date" id="qParentTitle">What needs to be discussed?</span>
+      </div>
+      <div class="extra content">
+        <div class="ui form">
+          <div class="field">
+            <textarea id="userQuestionField"></textarea>
+          </div>
+          <div class="ui buttons">
+            <button class="ui button active" onclick="closeQuestionCard()">Cancel</button>
+            <button class="ui primary button" id="saveQuestion()" onclick="saveQuestionForm()">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui raised very padded text container segment" style="display: none" style="position: absolute" style="z-index: 1" id="argumentFieldCard">
+    <h3 class="ui header">
+      <div class="content" id="argumentParentHeader">
+      </div>
+    </h3>
+    <h2 class="ui header">
+      <i class="comments outline icon"></i>
+      <div class="content" id="argumentFieldHeader"></div>
+    </h2>
+    <div>
+      Green bubbles are arguments for this idea, red arguments are against.
+    </div>
+    <div class="content" id="argumentFieldCardContent">
+      <div class="ui grid">
+          <div class="ten wide column row">
+              <button class="ui right floated icon button hastip" title="Add an argument to the discussion" onclick="openArgumentCard()" id="addArgBtn">
+                <i class="plus icon"></i>
+              </button>
+            </div>
+          <div class="ten wide column" id="tenCol">
+            <div class="column row">
+              <div class="ui segment" id="argumentField"></div>
+            </div>  
+          </div>
+        <div class="six wide center aligned column">
+          <div class="ui segments">
+            <div class="ui basic segment" id="argHeaders">
+              <h3 class="ui header">Edit Argument Weight</h3>
+              <h5 class="ui header" id="argHeader">Select an argument</h5>
+            </div>
+            <div class="ui basic segment">
+              <button class="ui icon button" id="argMinus" onclick="argMinus()"><i class="minus icon"></i></button>
+              <button class="ui icon button" id="argPlus" onclick="argPlus()"><i class="plus icon"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="ui buttons">
+          <button class="ui button active" onclick="closeArgumentFieldCard()">Okay</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui raised card hidden" id="argumentCard" style="display: none">
+      <div class="content">  
+        <i class="right floated large chevron circle down icon" id="downArrow"></i>
+        <i class="right floated large chevron circle up icon" id="upArrow"></i>
+
+        <a class="header">Arguments</a>
+        <div class="meta">
+          <span class="date" id="argParentName"></span>
+        </div>
+        <div class="ui form">
+          <div class="field">
+            <textarea id="userArgText"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="extra content">
+        <div class="ui buttons">
+          <button class="ui button active" onclick="closeArgumentCard()">Cancel</button>
+          <button class="ui primary button" id="saveArgument" onclick="saveArgumentForm()" data-content="Select for/against" data-position="right center">Save</button>
+        </div>
+    </div>
+  </div>
+  <button class="ui button" onclick="saveJSON()">Save</button>
+  <!-- load the d3.js library --> 
+  <script src="d3.v3.min.js"></script>
+  <script src="d3plus/d3plus.js"></script>
+  <script src="data.js" ></script>
+  <script src="eDenocracy.js"></script>
+
+
+  </body>
+</html>
